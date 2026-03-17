@@ -1,13 +1,55 @@
-history = model.fit(train_dataset, validation_data=eval_dataset, epochs=25, batch_size=BATCH_SIZE)
+import argparse
+from pathlib import Path
 
-def training_plot(metrics, history):
-    f, ax = plt.subplots(1, len(metrics), figsize=(5*len(metrics), 5))
-    for idx, metric in enumerate(metrics):
-        ax[idx].plot(history.history[metric], ls='dashed')
-        ax[idx].set_xlabel('Epochs')
-        ax[idx].set_ylabel(metric)
-        ax[idx].plot(history.history['val_'+metric]);
-        ax[idx].legend(['train_'+metric, 'val_'+metric])
+from sklearn.model_selection import train_test_split
 
-training_plot(['loss', 'root_mean_squared_error'], history)
+from .data import load_csv
+from .features import split_features_label
+from .model import train_eval_save
+DEFAULT_DATA = "data/raw/train.csv"
 
+
+def parse_args():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--csv", default=str(DEFAULT_DATA), help="Path to training CSV (default: data/raw/train.csv)")
+    ap.add_argument("--label", default="click", help="Target column")
+    ap.add_argument("--model-out", default="models/model.joblib", help="Saved model path")
+    ap.add_argument("--test-size", type=float, default=0.2, help="Validation fraction")
+    ap.add_argument("--random-state", type=int, default=42)
+    return ap.parse_args()
+
+
+def main():
+    args = parse_args()
+    csv_path = Path(args.csv).expanduser().resolve()
+    model_path = Path(args.model_out).expanduser().resolve()
+
+    df = load_csv(csv_path)
+    if args.label not in df.columns:
+        raise ValueError(f"Label column '{args.label}' not found in {args.csv}")
+
+    X, y = split_features_label(df, args.label)
+
+    X_train, X_valid, y_train, y_valid = train_test_split(
+        X,
+        y,
+        test_size=args.test_size,
+        random_state=args.random_state,
+        stratify=y,
+    )
+
+    metrics = train_eval_save(
+        X_train=X_train,
+        y_train=y_train,
+        X_valid=X_valid,
+        y_valid=y_valid,
+        model_path=args.model_out,
+    )
+
+    print(f"Saved model to: {Path(args.model_out)}")
+    print(f"log_loss={metrics['log_loss']:.6f}")
+    print(f"roc_auc={metrics['roc_auc']:.6f}")
+
+
+if __name__ == "__main__":
+    main()
