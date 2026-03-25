@@ -1,6 +1,6 @@
 import pandas as pd
 
-from ctr_prediction.model import build_pipeline, train_eval_save, load_model
+from pawpularity.model import build_pipeline, train_eval_save, load_model
 
 
 def make_small_training_df():
