@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 
 from sklearn.model_selection import train_test_split
+from .preprocessing import stratified_split
 
 from .data import load_csv
 from .features import split_features_label
