@@ -16,3 +16,27 @@ submission_output = pd.concat(
 submission_output.columns = [['Id', 'Pawpularity']]
 
 submission_output.to_csv('submission.csv', index=False)
+
+def parse_args():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", default="models/model.joblib")
+    ap.add_argument("--input", required=True, help="CSV with feature columns")
+    ap.add_argument("--output", default="predictions.csv")
+    ap.add_argument("--id-col", default="id", help="ID column for submission output")
+    return ap.parse_args()
+
+
+def main():
+    args = parse_args()
+
+    model = load(args.model)
+    X = load_csv(args.input)
+
+    out = model.predict(X)
+
+    save_csv(out, args.output)
+    print(f"Saved predictions to: {args.output}")
+
+
+if __name__ == "__main__":
+    main()
