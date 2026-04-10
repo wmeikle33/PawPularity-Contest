@@ -1,15 +1,5 @@
 
 
-model.summary()
-
-tf.keras.utils.plot_model(model, show_shapes=True, show_layer_names=False)
-
-model.compile(optimizer='adam',
-              loss=tf.keras.losses.MeanSquaredError(),
-              metrics=[tf.keras.metrics.RootMeanSquaredError()])
-
-%%time
-
 from __future__ import annotations
 from pathlib import Path
 import pandas as pd
@@ -19,7 +9,7 @@ from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from .features import auto_preprocess, split_features_label
-from .metrics import ctr_metrics
+from .metrics import metrics
 
 
 def build_pipeline(
@@ -37,6 +27,9 @@ def build_pipeline(
     tf.keras.layers.Flatten(),
     tf.keras.layers.Dense(units=1, activation=None)
 ])
+    model.compile(optimizer='adam',
+              loss=tf.keras.losses.MeanSquaredError(),
+              metrics=[tf.keras.metrics.RootMeanSquaredError()])
     return Pipeline(
         steps=[
             ("prep", preprocessor),
@@ -67,18 +60,6 @@ def train_eval_save(
     pipe.fit(X_train, y_train)
 
     metrics: dict[str, float] = {}
-
-    if hasattr(pipe, "predict_proba"):
-        y_prob = pipe.predict_proba(X_val)
-        if y.nunique() == 2:
-            pos_prob = y_prob[:, 1]
-            metrics = ctr_metrics(y_val, pos_prob)
-        else:
-            metrics = {"log_loss": float(log_loss(y_val, y_prob))}
-    else:
-        raise ValueError(
-            "Pipeline does not support predict_proba(), required for CTR metrics."
-        )
 
     Path(model_path).parent.mkdir(parents=True, exist_ok=True)
     dump(pipe, model_path)
