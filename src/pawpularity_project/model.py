@@ -24,11 +24,11 @@ from .metrics import ctr_metrics
 
 def build_pipeline(
     X: pd.DataFrame,
-    model_name: str = "logreg",
+    model_name: str = "CNN Model",
     random_state: int = 42,
 ) -> Pipeline:
     preprocessor = auto_preprocess(X)
-    model = tf.keras.Sequential([
+    cnn = tf.keras.Sequential([
     tf.keras.layers.Conv2D(64, (3, 3), activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)),
     tf.keras.layers.MaxPooling2D((2, 2)),
     tf.keras.layers.MaxPooling2D((2, 2)),
@@ -40,7 +40,7 @@ def build_pipeline(
     return Pipeline(
         steps=[
             ("prep", preprocessor),
-            ("clf", classifier),
+            ("model", cnn),
         ]
     )
 
