@@ -2,8 +2,6 @@ from __future__ import annotations
 from pathlib import Path
 import pandas as pd
 from joblib import dump, load
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from .features import stratified_split
