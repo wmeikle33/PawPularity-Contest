@@ -7,7 +7,7 @@ from .preprocessing import stratified_split
 from .data import load_csv
 from .features import split_features_label
 from .model import train_eval_save
-DEFAULT_DATA = "data/raw/train.csv"
+DEFAULT_DATA = "train/train.csv"
 
 
 def parse_args():
