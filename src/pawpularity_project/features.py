@@ -15,3 +15,9 @@ def decode_csv(csv_row):
     pawpularity = tf.convert_to_tensor(float(pawpularity), dtype=tf.float32)
     image = read_and_decode(filename, [IMG_HEIGHT, IMG_WIDTH])
     return image, pawpularity
+
+def split_features_label(df: pd.DataFrame, label: str) -> tuple[pd.DataFrame, pd.Series]:
+    y = df[label]
+    X = df.drop(columns=[label])
+    return X, y
+
