@@ -6,17 +6,12 @@ import pandas as pd
 import tensorflow as tf
 
 from sklearn.model_selection import train_test_split
+from .features import split_features_label
 
 
 IMG_HEIGHT = 128
 IMG_WIDTH = 128
 IMG_CHANNELS = 3
-
-
-def split_features_label(df: pd.DataFrame, label: str):
-    y = df[label]
-    X = df.drop(columns=[label])
-    return X, y
 
 
 def build_model(
