@@ -4,7 +4,6 @@ import pandas as pd
 from joblib import dump, load
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
-from .features import stratified_split
 from .metrics import metrics
 
 
@@ -13,7 +12,6 @@ def build_pipeline(
     model_name: str = "CNN Model",
     random_state: int = 42,
 ) -> Pipeline:
-    preprocessor = stratified_split(X)
     cnn = tf.keras.Sequential([
     tf.keras.layers.Conv2D(64, (3, 3), activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)),
     tf.keras.layers.MaxPooling2D((2, 2)),
@@ -28,7 +26,6 @@ def build_pipeline(
               metrics=[tf.keras.metrics.RootMeanSquaredError()])
     return Pipeline(
         steps=[
-            ("prep", preprocessor),
             ("model", cnn),
         ]
     )
