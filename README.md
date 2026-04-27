@@ -65,7 +65,7 @@ The repository incorporates a CNN model for image analysis. Specifically the mod
 
 ```bash
 git clone https://github.com/wmeikle33/Pawpularity-Contest.git
-cd Click-Through-Rate-Prediction
+cd Pawpularity-Contest
 
 python -m venv .venv
 source .venv/bin/activate
