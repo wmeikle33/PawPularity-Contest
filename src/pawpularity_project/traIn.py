@@ -36,7 +36,6 @@ def main():
         y,
         test_size=args.test_size,
         random_state=args.random_state,
-        stratify=y,
     )
 
     metrics = train_eval_save(
