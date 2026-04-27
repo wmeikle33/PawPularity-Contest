@@ -13,13 +13,20 @@ def build_pipeline(
     random_state: int = 42,
 ) -> Pipeline:
     cnn = tf.keras.Sequential([
-    tf.keras.layers.Conv2D(64, (3, 3), activation='relu', input_shape=(IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)),
+    tf.keras.layers.Input(shape=(IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)),
+
+    tf.keras.layers.Conv2D(32, (3, 3), activation='relu', padding='same'),
     tf.keras.layers.MaxPooling2D((2, 2)),
+
+    tf.keras.layers.Conv2D(64, (3, 3), activation='relu', padding='same'),
     tf.keras.layers.MaxPooling2D((2, 2)),
+
+    tf.keras.layers.Conv2D(128, (3, 3), activation='relu', padding='same'),
     tf.keras.layers.MaxPooling2D((2, 2)),
-    tf.keras.layers.MaxPooling2D((2, 2)),
-    tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(units=1, activation=None)
+
+    tf.keras.layers.GlobalAveragePooling2D(),
+
+    tf.keras.layers.Dense(1, activation=None)
 ])
     model.compile(optimizer='adam',
               loss=tf.keras.losses.MeanSquaredError(),
