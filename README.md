@@ -50,6 +50,8 @@ Pawpularity/
 
 The repository incorporates a CNN model for image analysis. Specifically the model uses a number of max pooling and dense layers to extract image informaiton for analysis.
 
+# Reproduce My Score
+
 ```bash
 
 # Reproduce the baseline
@@ -73,5 +75,3 @@ mkdir -p data/raw
 This repository was originally generated from the notebook Pawpularity Contest
 
 ```
-
-# Reproduce My Score
