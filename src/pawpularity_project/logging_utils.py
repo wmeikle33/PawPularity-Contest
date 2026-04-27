@@ -6,7 +6,7 @@ from typing import Optional
 
 def setup_logging(
     log_dir: Path = Path("logs"),
-    log_name: str = "pawpularity_projevt.log",
+    log_name: str = "pawpularity_project.log",
     console_level: int = logging.INFO,
     file_level: int = logging.DEBUG,
 ) -> None:
