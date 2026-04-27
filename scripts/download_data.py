@@ -3,7 +3,7 @@ import zipfile
 from pathlib import Path
 
 
-DATASET = "Pawpularity"
+DATASET = "PetFinder.my - Pawpularity Contest"
 
 
 def download_from_kaggle(data_dir: Path):
