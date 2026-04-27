@@ -50,4 +50,28 @@ Pawpularity/
 
 The repository incorporates a CNN model for image analysis. Specifically the model uses a number of max pooling and dense layers to extract image informaiton for analysis.
 
+```bash
+
+# Reproduce the baseline
+
+1. Clone the repo
+2. Create a virtual environment
+3. Install dependencies
+4. Put `train.csv` and `test.csv` in `data/raw/`
+5. Train the baseline model
+6. Generate predictions
+
+```bash
+git clone https://github.com/wmeikle33/Pawpularity-Contest.git
+cd Click-Through-Rate-Prediction
+
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[data]"
+
+mkdir -p data/raw
+This repository was originally generated from the notebook Pawpularity Contest
+
+```
+
 # Reproduce My Score
