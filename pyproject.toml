@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pawpularity_score"
+name = "pawpularity_project"
 version = "0.1.0"
 description = "Predicting Pawpulariy Scores through CNN models"
 readme = "README.md"
@@ -28,8 +28,9 @@ dev = [
 ]
 
 [project.scripts]
-pawpularity-train = "pawpularity.train:main"
-pawpularity-predict = "pawpularity.predict:main"
+pawpularity-train = "pawpularity_project.train:main"
+pawpularity-predict = "pawpularity_project.predict:main"
+pawpularity-submit = "pawpularity_project.submission:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
