@@ -21,12 +21,12 @@ def parse_args():
 def main():
     args = parse_args()
 
-    model = load(args.model)
-    X = load_csv(args.input)
+    df = load_csv(args.input)
+    ids = df[args.id_col]
+
+    model = load_model(args.model)
 
     preds = model.predict(df).reshape(-1)
-
-    out = model.predict(X)
 
     submission = pd.DataFrame(
         {
