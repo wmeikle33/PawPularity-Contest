@@ -84,6 +84,3 @@ def train_eval_save(
 
 def load_model(path: str) -> tf.keras.Model:
     return tf.keras.models.load_model(path)
-
-def load_model(path: str):
-    return load(path)
