@@ -19,10 +19,6 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 
-myproj preprocess --config configs/default.yaml
-myproj train --config configs/train.yaml
-myproj eval --config configs/eval.yaml
-
 ```
 
 # Repo Structure
@@ -51,5 +47,7 @@ Pawpularity/
 
 
 # Modeling
+
+The repository incorporates a CNN model for image analysis. Specifically the model uses a number of max pooling and dense layers to extract image informaiton for analysis.
 
 # Reproduce My Score
