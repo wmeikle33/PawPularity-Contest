@@ -10,9 +10,11 @@ Competition: PetFinder.my - Pawpularity Contest (Kaggle)
 
 # Approach
 
-Pipeline stages: Data preprocessing Model training Evaluation Kaggle submission generation
+Pipeline stages: Data preprocessing Model training Evaluation Kaggle submission generation.
 
 # Preprocessing
+
+Image is decoded and the data is compiled in a csv.
 
 # Modeling
 
