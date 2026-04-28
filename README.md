@@ -26,6 +26,10 @@ Competition: PetFinder.my - Pawpularity Contest (Kaggle)
 
 Pipeline stages: Data preprocessing Model training Evaluation Kaggle submission generation
 
+# Preprocessing
+
+# Modeling
+
 # Quickstart
 
 ```
