@@ -12,6 +12,10 @@ If successful, your solution will be adapted into AI tools that will guide shelt
 
 Top participants may be invited to collaborate on implementing their solutions and creatively improve global animal welfare with their AI skills.
 
+# Summary 
+
+Uses the Kaggle My Petfinder dataset Builds a pipeline to: load and analyze image data using a CNN model.
+
 # Quickstart
 
 ```
