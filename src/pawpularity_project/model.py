@@ -7,7 +7,7 @@ import tensorflow as tf
 
 from sklearn.model_selection import train_test_split
 from .features import split_features_label
-from .preprocess import decode_csv
+from .preprocessing import decode_csv
 
 BATCH_SIZE = 256
 
