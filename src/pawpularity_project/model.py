@@ -8,6 +8,13 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from .features import split_features_label
 
+BATCH_SIZE = 256
+
+train_dataset = tf.data.TextLineDataset(
+    'training_set.csv').map(decode_csv).batch(BATCH_SIZE)
+
+eval_dataset = tf.data.TextLineDataset(
+    'eval_set.csv').map(decode_csv).batch(BATCH_SIZE)
 
 IMG_HEIGHT = 128
 IMG_WIDTH = 128
