@@ -22,6 +22,10 @@ Dataset: ~9000 image data samples
 
 Competition: PetFinder.my - Pawpularity Contest (Kaggle)
 
+# Approach
+
+Pipeline stages: Data preprocessing Model training Evaluation Kaggle submission generation
+
 # Quickstart
 
 ```
