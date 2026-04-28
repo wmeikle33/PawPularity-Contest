@@ -1,3 +1,5 @@
+import pandas as pd
+
 def read_and_decode(filename, reshape_dims):
     image = tf.io.read_file(filename)
     image = tf.image.decode_jpeg(image, channels=IMG_CHANNELS)
