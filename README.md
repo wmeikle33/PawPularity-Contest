@@ -21,7 +21,7 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 mkdir -p data/raw
-# add Kaggle files here
+
 python scripts/train.py
 python scripts/predict.py
 pytest
