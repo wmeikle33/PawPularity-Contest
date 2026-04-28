@@ -16,6 +16,12 @@ Top participants may be invited to collaborate on implementing their solutions a
 
 Uses the Kaggle My Petfinder dataset Builds a pipeline to: load and analyze image data using a CNN model.
 
+# Dataset
+
+Dataset: ~900 image data samples
+
+Competition: PetFinder.my - Pawpularity Contest (Kaggle)
+
 # Quickstart
 
 ```
