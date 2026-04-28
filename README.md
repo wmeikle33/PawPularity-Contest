@@ -18,7 +18,7 @@ Uses the Kaggle My Petfinder dataset Builds a pipeline to: load and analyze imag
 
 # Dataset
 
-Dataset: ~900 image data samples
+Dataset: ~9000 image data samples
 
 Competition: PetFinder.my - Pawpularity Contest (Kaggle)
 
