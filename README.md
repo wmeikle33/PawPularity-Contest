@@ -18,6 +18,8 @@ Image is decoded and the data is compiled in a csv.
 
 # Modeling
 
+This repo utilizes a CNN based model to make predictions for the Pawpularity score of a given photo.
+
 # Quickstart
 
 ```
