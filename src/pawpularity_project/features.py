@@ -1,4 +1,5 @@
 import pandas as pd
+import tensorflow as tf
 
 def read_and_decode(filename, reshape_dims):
     image = tf.io.read_file(filename)
