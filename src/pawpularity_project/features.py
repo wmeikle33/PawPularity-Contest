@@ -1,18 +1,18 @@
 import pandas as pd
 import tensorflow as tf
 
-def read_and_decode(filename, reshape_dims):
+def read_and_decode(filename, reshape_dims, IMG_CHANNELS):
     image = tf.io.read_file(filename)
     image = tf.image.decode_jpeg(image, channels=IMG_CHANNELS)
     image = tf.image.convert_image_dtype(image, tf.float32)
     return tf.image.resize(image, reshape_dims)
 
-def show_image(filename):
+def show_image(filename, IMG_HEIGHT, IMG_WIDTH):
     image = read_and_decode(filename, [IMG_HEIGHT, IMG_WIDTH])
     plt.imshow(image.numpy());
     plt.axis('off');
     
-def decode_csv(csv_row):
+def decode_csv(csv_row, IMG_HEIGHT, IMG_WIDTH):
     record_defaults = ['Id', 'Weight']
     filename, pawpularity = tf.io.decode_csv(csv_row, record_defaults)
     pawpularity = tf.convert_to_tensor(float(pawpularity), dtype=tf.float32)
