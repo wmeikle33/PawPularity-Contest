@@ -14,7 +14,7 @@ def parse_args():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default=str(DEFAULT_DATA), help="Path to training CSV (default: data/raw/train.csv)")
     ap.add_argument("--label", default="pawpularity_score", help="Target column")
-    ap.add_argument("--model-out", default="models/model.joblib", help="Saved model path")
+    ap.add_argument("--model-out", default="models/model.keras", help="Saved model path")
     ap.add_argument("--test-size", type=float, default=0.2, help="Validation fraction")
     ap.add_argument("--random-state", type=int, default=42)
     return ap.parse_args()
