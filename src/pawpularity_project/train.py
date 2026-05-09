@@ -25,26 +25,25 @@ def main():
     csv_path = Path(args.csv).expanduser().resolve()
     model_path = Path(args.model_out).expanduser().resolve()
 
-    df = load_csv(csv_path)
-    if args.label not in df.columns:
-        raise ValueError(f"Label column '{args.label}' not found in {args.csv}")
-
-    X, y = split_features_label(df, args.label)
-
-    X_train, X_valid, y_train, y_valid = train_test_split(
-        X,
-        y,
-        test_size=args.test_size,
-        random_state=args.random_state,
-    )
+   train_dataset = (
+    tf.data.TextLineDataset("training_set.csv")
+    .map(decode_csv)
+    .batch(BATCH_SIZE)
+    .prefetch(tf.data.AUTOTUNE)
+)
+    eval_dataset = (
+    tf.data.TextLineDataset("eval_set.csv")
+    .map(decode_csv)
+    .batch(BATCH_SIZE)
+    .prefetch(tf.data.AUTOTUNE)
+)
 
     metrics = train_eval_save(
-        X_train=X_train,
-        y_train=y_train,
-        X_valid=X_valid,
-        y_valid=y_valid,
-        model_path=args.model_out,
-    )
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+    model_path=args.model_out,
+    epochs=args.epochs,
+)
 
     print(f"Saved model to: {Path(args.model_out)}")
     print(f"val_loss={metrics['val_loss']:.6f}")
