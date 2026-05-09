@@ -54,23 +54,34 @@ def build_model(
 
 
 def train_eval_save(
-    X: np.ndarray,
-    y: np.ndarray,
-    model_path: str,
-    random_state: int = 42,
-    epochs: int = 10,
-    batch_size: int = 32,
-) -> dict[str, float]:
-
+    train_dataset,
+    eval_dataset,
+    model_path,
+    epochs=10,
+):
     model = build_model()
 
-    history = model.fit(train_dataset, validation_data=eval_dataset, epochs=25, batch_size=BATCH_SIZE)
+    history = model.fit(
+        train_dataset,
+        validation_data=eval_dataset,
+        epochs=epochs,
+    )
+
+    eval_results = model.evaluate(
+        eval_dataset,
+        verbose=0,
+    )
+
+    Path(model_path).parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
     model.save(model_path)
 
     return {
         "val_loss": float(eval_results[0]),
-        "val_rmse": float(eval_results[1]) if len(eval_results) > 1 else None,
+        "val_rmse": float(eval_results[1]),
         "history": history.history,
     }
 
