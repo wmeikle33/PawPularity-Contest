@@ -4,11 +4,9 @@ import pytest
 
 @pytest.fixture
 def sample_ctr_df():
-    """Small synthetic CTR dataset for testing."""
-    return pd.DataFrame(
-        {
-            "feature_num": [0, 1, 2, 3, 4, 5],
-            "feature_cat": ["a", "a", "b", "b", "c", "c"],
-            "click": [0, 1, 0, 1, 0, 1],
-        }
-    )
+    """Small synthetic dataset for testing."""
+    images = np.random.rand(100, 28, 28).astype(np.float32)
+    labels = np.random.randint(0, 10, size=(100,))
+    dataset = tf.data.Dataset.from_tensor_slices((images, labels))
+    dataset = dataset.batch(32)
+    return dataset
