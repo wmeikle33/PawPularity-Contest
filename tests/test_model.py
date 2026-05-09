@@ -1,6 +1,6 @@
 import pandas as pd
 
-from pawpularity_prokect.model import build_pipeline, train_eval_save, load_model
+from pawpularity_project.model import build_pipeline, train_eval_save, load_model
 
 
 def make_small_training_df():
