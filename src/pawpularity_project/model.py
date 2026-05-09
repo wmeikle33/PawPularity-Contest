@@ -58,7 +58,6 @@ def train_eval_save(
     y: np.ndarray,
     model_path: str,
     random_state: int = 42,
-    test_size: float = 0.2,
     epochs: int = 10,
     batch_size: int = 32,
 ) -> dict[str, float]:
