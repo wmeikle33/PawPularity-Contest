@@ -1,9 +1,8 @@
+from sklearn.model_selection import StratifiedShuffleSplit
+
 def read_and_decode(filename, reshape_dims):
-    # Read an image file to a tensor as a sequence of bytes
     image = tf.io.read_file(filename)
-    # Convert the tensor to a 3D uint8 tensor
     image = tf.image.decode_jpeg(image, channels=IMG_CHANNELS)
-    # Convert 3D uint8 tensor with values in [0, 1]
     image = tf.image.convert_image_dtype(image, tf.float32)
     # Resize the image to the desired size
     return tf.image.resize(image, reshape_dims)
