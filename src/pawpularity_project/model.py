@@ -78,14 +78,14 @@ def train_eval_save(
         batch_size=batch_size,
     )
 
-    val_loss, val_rmse = model.evaluate(X_val, y_val, verbose=0)
+    eval_results = model.evaluate(X_valid, y_valid, verbose=0)
 
-    Path(model_path).parent.mkdir(parents=True, exist_ok=True)
     model.save(model_path)
 
     return {
-        "val_loss": float(val_loss),
-        "val_rmse": float(val_rmse),
+        "val_loss": float(eval_results[0]),
+        "val_rmse": float(eval_results[1]) if len(eval_results) > 1 else None,
+        "history": history.history,
     }
 
 
