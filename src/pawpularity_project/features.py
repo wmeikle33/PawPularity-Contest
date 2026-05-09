@@ -19,6 +19,9 @@ def decode_csv(csv_row, IMG_HEIGHT, IMG_WIDTH):
     image = read_and_decode(filename, [IMG_HEIGHT, IMG_WIDTH])
     return image, pawpularity
 
+def make_dataset():
+    pass
+
 def split_features_label(df: pd.DataFrame, label: str) -> tuple[pd.DataFrame, pd.Series]:
     y = df[label]
     X = df.drop(columns=[label])
