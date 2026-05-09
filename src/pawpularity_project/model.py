@@ -61,24 +61,10 @@ def train_eval_save(
     epochs: int = 10,
     batch_size: int = 32,
 ) -> dict[str, float]:
-    X_train, X_val, y_train, y_val = train_test_split(
-        X,
-        y,
-        test_size=test_size,
-        random_state=random_state,
-    )
 
     model = build_model()
 
-    history = model.fit(
-        X_train,
-        y_train,
-        validation_data=(X_valid, y_valid),
-        epochs=epochs,
-        batch_size=batch_size,
-    )
-
-    eval_results = model.evaluate(X_valid, y_valid, verbose=0)
+    history = model.fit(train_dataset, validation_data=eval_dataset, epochs=25, batch_size=BATCH_SIZE)
 
     model.save(model_path)
 
