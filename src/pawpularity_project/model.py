@@ -71,8 +71,9 @@ def train_eval_save(
     model = build_model()
 
     history = model.fit(
-        train_data = train_dataset,
-        validation_data=eval_dataset,
+        X_train,
+        y_train,
+        validation_data=(X_valid, y_valid),
         epochs=epochs,
         batch_size=batch_size,
     )
