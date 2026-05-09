@@ -47,8 +47,8 @@ def main():
     )
 
     print(f"Saved model to: {Path(args.model_out)}")
-    print(f"log_loss={metrics['log_loss']:.6f}")
-    print(f"roc_auc={metrics['roc_auc']:.6f}")
+    print(f"val_loss={metrics['val_loss']:.6f}")
+    print(f"val_rmse={metrics['val_rmse']:.6f}")
 
 
 if __name__ == "__main__":
